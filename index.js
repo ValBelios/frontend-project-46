@@ -1,4 +1,3 @@
 export default function genDiff(filepath1, filepath2, format = 'stylish') {
-  return 'difference here';
+  return 'Файл успешно обработан!';
 }
-
