@@ -16,4 +16,14 @@ test('gendiff JSON', () => {
   const expected = readFile('expected.txt');
 
   expect(genDiff(filepath1, filepath2)).toBe(expected.trim());
+
+test('gendiff YAML', () => {
+  const filepath1 = getFixturePath('file1.yml');
+  const filepath2 = getFixturePath('file2.yml');
+  const expected = readFile('expected.txt');
+
+  expect(genDiff(filepath1, filepath2)).toBe(expected.trim());
+});
+
+
 });

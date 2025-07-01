@@ -1,10 +1,14 @@
-const parse = (data, format) => {
-  switch (format) {
-    case 'json':
+// src/parsers.js
+import yaml from 'js-yaml';
+
+export default (data, extname) => {
+  switch (extname) {
+    case '.json':
       return JSON.parse(data);
+    case '.yml':
+    case '.yaml':
+      return yaml.load(data);
     default:
-      throw new Error(`Неизвестный формат: ${format}`);
+      throw new Error(`Unknown file extension: ${extname}`);
   }
 };
-
-export default parse;
