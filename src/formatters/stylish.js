@@ -1,6 +1,6 @@
 const makeSignIndent = (depth) => ' '.repeat(Math.max(depth * 4 - 2, 0));
 const makeNormalIndent = (depth) => ' '.repeat(depth * 4);
-const makeBracketIndent = (depth) => ' '.repeat((depth - 1) * 4);
+const makeBracketIndent = (depth) => ' '.repeat(Math.max((depth - 1) * 4, 0));
 
 const stringify = (value, depth) => {
   if (typeof value !== 'object' || value === null) {
