@@ -1,4 +1,3 @@
-export default function genDiff(filepath1, filepath2, format = 'stylish') {
-  return 'difference here';
-}
+import genDiff from './gendiff.js'; // ← путь к твоей основной функции
 
+export default genDiff;
