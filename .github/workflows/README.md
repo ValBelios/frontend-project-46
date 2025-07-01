@@ -27,3 +27,7 @@ make install
 ## Демонстрация работы (asciinema)
 
 [![asciinema](https://asciinema.org/a/03786107-8a30-411c-9e61-8ac2fdd16d89.svg)](https://asciinema.org/a/03786107-8a30-411c-9e61-8ac2fdd16d89)
+
+    ## Демонстрация работы в формате JSON
+
+[![asciicast](https://asciinema.org/a/03786107-8a30-411c-9e61-8ac2fdd16d89.svg)](https://asciinema.org/a/03786107-8a30-411c-9e61-8ac2fdd16d89)

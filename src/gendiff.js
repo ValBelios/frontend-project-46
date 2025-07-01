@@ -1,30 +1,5 @@
-import path from 'path';
-import fs from 'fs';
-import yaml from 'js-yaml';
+import parse from './parsers.js';
 
-// Получение абсолютного пути
-const getAbsolutePath = (filepath) => path.resolve(process.cwd(), filepath);
-
-// Определение формата файла по расширению
-const getFormat = (filepath) => path.extname(filepath).toLowerCase();
-
-// Чтение и парсинг файла
-const parse = (filepath) => {
-  const absolutePath = getAbsolutePath(filepath);
-  const data = fs.readFileSync(absolutePath, 'utf-8');
-  const format = getFormat(filepath);
-
-  if (format === '.json') {
-    return JSON.parse(data);
-  }
-  if (format === '.yml' || format === '.yaml') {
-    return yaml.load(data);
-  }
-
-  throw new Error(`Unsupported file format: ${format}`);
-};
-
-// Функция сравнения
 const genDiff = (filepath1, filepath2) => {
   const obj1 = parse(filepath1);
   const obj2 = parse(filepath2);
