@@ -1,3 +1,3 @@
-import genDiff from './gendiff.js'; // ← путь к твоей основной функции
+import genDiff from './gendiff.js';
 
 export default genDiff;
