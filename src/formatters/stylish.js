@@ -21,25 +21,26 @@ const stringify = (value, depth) => {
 const stylish = (tree) => {
   const iter = (nodes, depth) => {
     const lines = nodes.map((node) => {
-      const [key, data] = Object.entries(node)[0];
-      const { operation, value, prevValue } = data;
+      const {
+        key, type, value, oldValue, newValue, children,
+      } = node;
 
-      switch (operation) {
+      switch (type) {
         case 'added':
           return `${makeIndent(depth)}+ ${key}: ${stringify(value, depth)}`;
         case 'removed':
           return `${makeIndent(depth)}- ${key}: ${stringify(value, depth)}`;
         case 'unchanged':
           return `${makeIndent(depth)}  ${key}: ${stringify(value, depth)}`;
-        case 'updated':
+        case 'changed':
           return [
-            `${makeIndent(depth)}- ${key}: ${stringify(prevValue, depth)}`,
-            `${makeIndent(depth)}+ ${key}: ${stringify(value, depth)}`
+            `${makeIndent(depth)}- ${key}: ${stringify(oldValue, depth)}`,
+            `${makeIndent(depth)}+ ${key}: ${stringify(newValue, depth)}`
           ].join('\n');
         case 'nested':
-          return `${makeIndent(depth)}  ${key}: ${iter(value, depth + 1)}`;
+          return `${makeIndent(depth)}  ${key}: ${iter(children, depth + 1)}`;
         default:
-          throw new Error(`Неизвестный тип операции: '${operation}'`);
+          throw new Error(`Неизвестный тип операции: '${type}'`);
       }
     });
 
