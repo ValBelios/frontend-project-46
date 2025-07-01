@@ -1,16 +1,20 @@
-import fs from 'fs'
-import parse from './parsers.js'
-import path from 'path'
-
-const getFormat = (filepath) => {
-  const ext = path.extname(filepath)
-  return ext.slice(1).toLowerCase()
-}
+import fs from 'fs';
+import path from 'path';
+import yaml from 'js-yaml';
 
 const readFile = (filepath) => {
-  const content = fs.readFileSync(filepath, 'utf-8')
-  const format = getFormat(filepath)
-  return parse(content, format)
-}
+  const ext = path.extname(filepath).toLowerCase();
+  const content = fs.readFileSync(filepath, 'utf-8');
 
-export default readFile
+  switch (ext) {
+    case '.json':
+      return JSON.parse(content);
+    case '.yml':
+    case '.yaml':
+      return yaml.load(content);
+    default:
+      throw new Error(`Неизвестное расширение: ${ext}`);
+  }
+};
+
+export default readFile;
