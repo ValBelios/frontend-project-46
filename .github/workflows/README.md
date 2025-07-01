@@ -23,3 +23,7 @@ The hexlet-check.yml file is responsible for running these tests - do not delete
 git clone https://github.com/ValBelios/frontend-project-46.git
 cd frontend-project-46
 make install
+
+## Демонстрация работы (asciinema)
+
+[![asciinema](https://asciinema.org/a/03786107-8a30-411c-9e61-8ac2fdd16d89.svg)](https://asciinema.org/a/03786107-8a30-411c-9e61-8ac2fdd16d89)
