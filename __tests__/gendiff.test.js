@@ -1,7 +1,6 @@
 import { test, expect } from '@jest/globals'
 import path from 'path'
 import { fileURLToPath } from 'url'
-import fs from 'fs'
 import genDiff from '../src/index.js'// именно index.js, потому что он обрабатывает аргументы
 
 const __filename = fileURLToPath(import.meta.url)
