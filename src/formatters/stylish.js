@@ -1,6 +1,9 @@
-const makeSignIndent = (depth) => ' '.repeat(Math.max(depth * 4 - 2, 0));
-const makeNormalIndent = (depth) => ' '.repeat(depth * 4);
-const makeBracketIndent = (depth) => ' '.repeat(Math.max((depth - 1) * 4, 0));
+const indentSize = 2; // <-- вот здесь меняем масштаб отступа
+
+const makeSignIndent = (depth) => ' '.repeat(Math.max(depth * indentSize - 2, 0));
+const makeNormalIndent = (depth) => ' '.repeat(depth * indentSize);
+const makeBracketIndent = (depth) => ' '.repeat(Math.max((depth - 1) * indentSize, 0));
+
 
 const stringify = (value, depth) => {
   if (typeof value !== 'object' || value === null) {
