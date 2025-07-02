@@ -39,6 +39,6 @@ describe('Форматтеры', () => {
         const expectedString = Array.isArray(expected) ? expected.join('\n') : expected
         expect(result.trim().split('\n')).toEqual(expectedString.trim().split('\n'))
       }
-    }
+    },
   )
 })
