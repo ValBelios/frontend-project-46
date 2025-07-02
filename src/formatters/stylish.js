@@ -43,7 +43,7 @@ const stylish = (tree) => {
     return ['{', ...lines, `${makeBracketIndent(depth)}}`].join('\n');
   };
 
-  return iter(tree, 0);
+  return iter(tree, 2);
 };
 
 export default stylish;
