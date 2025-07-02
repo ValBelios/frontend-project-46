@@ -35,7 +35,7 @@ describe('Форматтеры', () => {
       if (name === 'json') {
         expect(() => JSON.parse(result)).not.toThrow()
         expect(JSON.parse(result)).toEqual(diff)
-      } 
+      }
       else {
         const expectedString = Array.isArray(expected) ? expected.join('\n') : expected
         expect(result.trim().split('\n')).toEqual(expectedString.trim().split('\n'))
