@@ -1,9 +1,8 @@
-const indentSize = 2; // <-- вот здесь меняем масштаб отступа
+const indentSize = 4; // ← фикс: правильный масштаб отступов
 
-const makeSignIndent = (depth) => ' '.repeat(Math.max(depth * indentSize - 2, 0));
+const makeSignIndent = (depth) => ' '.repeat(depth * indentSize - 2);
 const makeNormalIndent = (depth) => ' '.repeat(depth * indentSize);
-const makeBracketIndent = (depth) => ' '.repeat(Math.max((depth - 1) * indentSize, 0));
-
+const makeBracketIndent = (depth) => ' '.repeat((depth - 1) * indentSize);
 
 const stringify = (value, depth) => {
   if (typeof value !== 'object' || value === null) {
@@ -46,7 +45,7 @@ const stylish = (tree) => {
     return ['{', ...lines, `${makeBracketIndent(depth)}}`].join('\n');
   };
 
-  return iter(tree, 2);
+  return iter(tree, 1); // ← начальная глубина 1, чтобы root-отступ был 4 пробела
 };
 
 export default stylish;
