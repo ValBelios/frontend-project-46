@@ -6,13 +6,13 @@ const getAllKeysSorted = (obj1, obj2) => {
   return [...allKeys].sort()
 }
 
-const isPlainObject = (val) =>
+const isPlainObject = val =>
   typeof val === 'object' && val !== null && !Array.isArray(val)
 
 const genState = (obj1, obj2) => {
   const keys = getAllKeysSorted(obj1, obj2)
 
-  return keys.map((key) => {
+  return keys.map(key => {
     const oldValue = obj1[key]
     const newValue = obj2[key]
 

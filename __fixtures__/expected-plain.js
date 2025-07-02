@@ -11,6 +11,6 @@ const expectedPlain = [
   'Property \'group1.foo\' was removed',
   'Property \'group1.nest\' was updated. From [complex value] to \'str\'',
   'Property \'group2\' was removed',
-  'Property \'group3\' was added with value: [complex value]'
+  'Property \'group3\' was added with value: [complex value]',
 ]
 export default expectedPlain
