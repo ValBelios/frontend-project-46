@@ -12,7 +12,7 @@ import expectedPlain from '../__fixtures__/expected-plain.js'
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
-const getFixturePath = (filename) => path.join(__dirname, '..', '__fixtures__', filename)
+const getFixturePath = filename => path.join(__dirname, '..', '__fixtures__', filename)
 
 const filepath1 = getFixturePath('nestedFile1.json')
 const filepath2 = getFixturePath('nestedFile2.json')
@@ -32,6 +32,7 @@ describe('Форматтеры', () => {
     'форматтер %s работает корректно',
     (name, formatter, expected) => {
       const result = formatter(diff)
+      
       if (name === 'json') {
         expect(() => JSON.parse(result)).not.toThrow()
         expect(JSON.parse(result)).toEqual(diff)
@@ -39,6 +40,6 @@ describe('Форматтеры', () => {
         const expectedString = Array.isArray(expected) ? expected.join('\n') : expected
         expect(result.trim().split('\n')).toEqual(expectedString.trim().split('\n'))
       }
-    }
+    },
   )
 })
