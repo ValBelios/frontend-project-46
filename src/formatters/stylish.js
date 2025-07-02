@@ -1,4 +1,4 @@
-const indentSize = 4 // ← фикс: правильный масштаб отступов
+const indentSize = 4
 
 const makeSignIndent = (depth) => ' '.repeat(depth * indentSize - 2)
 const makeNormalIndent = (depth) => ' '.repeat(depth * indentSize)
@@ -14,14 +14,14 @@ const stringify = (value, depth) => {
   )
 
   return ['{', ...lines, `${makeBracketIndent(depth + 1)}}`].join('\n')
-};
+}
 
 const stylish = (tree) => {
   const iter = (nodes, depth) => {
     const lines = nodes.map((node) => {
       const {
         key, type, value, oldValue, newValue, children,
-      } = node;
+      } = node
 
       switch (type) {
         case 'added':
@@ -32,7 +32,7 @@ const stylish = (tree) => {
           return `${makeNormalIndent(depth)}${key}: ${stringify(value, depth)}`
         case 'changed':
           return [
-            `${makeSignIndent(depth)}- ${key}: ${stringify(oldValue, depth)}`
+            `${makeSignIndent(depth)}- ${key}: ${stringify(oldValue, depth)}`,
             `${makeSignIndent(depth)}+ ${key}: ${stringify(newValue, depth)}`
           ].join('\n')
         case 'nested':
@@ -43,9 +43,9 @@ const stylish = (tree) => {
     })
 
     return ['{', ...lines, `${makeBracketIndent(depth)}}`].join('\n')
-  };
+  }
 
-  return iter(tree, 1) // ← начальная глубина 1, чтобы root-отступ был 4 пробела
+  return iter(tree, 1)
 }
 
 export default stylish
