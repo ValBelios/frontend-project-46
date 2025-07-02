@@ -1,19 +1,19 @@
-const indentSize = 4; // ← фикс: правильный масштаб отступов
+const indentSize = 4 // ← фикс: правильный масштаб отступов
 
-const makeSignIndent = (depth) => ' '.repeat(depth * indentSize - 2);
-const makeNormalIndent = (depth) => ' '.repeat(depth * indentSize);
-const makeBracketIndent = (depth) => ' '.repeat((depth - 1) * indentSize);
+const makeSignIndent = (depth) => ' '.repeat(depth * indentSize - 2)
+const makeNormalIndent = (depth) => ' '.repeat(depth * indentSize)
+const makeBracketIndent = (depth) => ' '.repeat((depth - 1) * indentSize)
 
 const stringify = (value, depth) => {
   if (typeof value !== 'object' || value === null) {
-    return String(value);
+    return String(value)
   }
 
   const lines = Object.entries(value).map(
     ([key, val]) => `${makeNormalIndent(depth + 1)}${key}: ${stringify(val, depth + 1)}`
-  );
+  )
 
-  return ['{', ...lines, `${makeBracketIndent(depth + 1)}}`].join('\n');
+  return ['{', ...lines, `${makeBracketIndent(depth + 1)}}`].join('\n')
 };
 
 const stylish = (tree) => {
@@ -25,27 +25,27 @@ const stylish = (tree) => {
 
       switch (type) {
         case 'added':
-          return `${makeSignIndent(depth)}+ ${key}: ${stringify(value, depth)}`;
+          return `${makeSignIndent(depth)}+ ${key}: ${stringify(value, depth)}`
         case 'removed':
-          return `${makeSignIndent(depth)}- ${key}: ${stringify(value, depth)}`;
+          return `${makeSignIndent(depth)}- ${key}: ${stringify(value, depth)}`
         case 'unchanged':
-          return `${makeNormalIndent(depth)}${key}: ${stringify(value, depth)}`;
+          return `${makeNormalIndent(depth)}${key}: ${stringify(value, depth)}`
         case 'changed':
           return [
-            `${makeSignIndent(depth)}- ${key}: ${stringify(oldValue, depth)}`,
+            `${makeSignIndent(depth)}- ${key}: ${stringify(oldValue, depth)}`
             `${makeSignIndent(depth)}+ ${key}: ${stringify(newValue, depth)}`
-          ].join('\n');
+          ].join('\n')
         case 'nested':
-          return `${makeNormalIndent(depth)}${key}: ${iter(children, depth + 1)}`;
+          return `${makeNormalIndent(depth)}${key}: ${iter(children, depth + 1)}`
         default:
-          throw new Error(`Неизвестный тип: '${type}'`);
+          throw new Error(`Неизвестный тип: '${type}'`)
       }
-    });
+    })
 
-    return ['{', ...lines, `${makeBracketIndent(depth)}}`].join('\n');
+    return ['{', ...lines, `${makeBracketIndent(depth)}}`].join('\n')
   };
 
-  return iter(tree, 1); // ← начальная глубина 1, чтобы root-отступ был 4 пробела
-};
+  return iter(tree, 1) // ← начальная глубина 1, чтобы root-отступ был 4 пробела
+}
 
-export default stylish;
+export default stylish
