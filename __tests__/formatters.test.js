@@ -32,7 +32,6 @@ describe('Форматтеры', () => {
     'форматтер %s работает корректно',
     (name, formatter, expected) => {
       const result = formatter(diff)
-      
       if (name === 'json') {
         expect(() => JSON.parse(result)).not.toThrow()
         expect(JSON.parse(result)).toEqual(diff)
