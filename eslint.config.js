@@ -1,6 +1,7 @@
-import js from '@eslint/js'
-import globals from 'globals'
-import { defineConfig } from 'eslint/config'
+import js from '@eslint/js',
+import globals from 'globals',
+import { defineConfig } from 'eslint/config',
+import stylistic from '@stylistic/eslint-plugin',
 
 export default defineConfig([
   js.configs.recommended,
@@ -10,22 +11,24 @@ export default defineConfig([
       ecmaVersion: 'latest',
       sourceType: 'module',
       globals: {
-        ...globals.node
-      }
+        ...globals.node,
+      },
     },
     plugins: {
-      '@stylistic': require('@stylistic/eslint-plugin')
+      '@stylistic': stylistic,
     },
     rules: {
       '@stylistic/semi': ['error', 'never'],
       '@stylistic/quotes': ['error', 'single'],
       '@stylistic/indent': ['error', 2],
       '@stylistic/arrow-parens': ['error', 'as-needed'],
-      'no-console': 'off'
+      '@stylistic/comma-dangle': ['error', 'always-multiline'],
+      '@stylistic/eol-last': ['error', 'always'],
+      'no-console': 'off',
     },
     ignores: ['dist', 'node_modules'],
     linterOptions: {
-      reportUnusedDisableDirectives: true
-    }
-  }
+      reportUnusedDisableDirectives: true,
+    },
+  },
 ])
